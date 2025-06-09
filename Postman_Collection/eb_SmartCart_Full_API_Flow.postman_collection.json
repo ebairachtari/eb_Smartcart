@@ -1,0 +1,820 @@
+{
+	"info": {
+		"_postman_id": "b3d7d494-ba9d-47e5-b56f-d5441050703f",
+		"name": "eb_SmartCart_Full_API_Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39551239"
+	},
+	"item": [
+		{
+			"name": "01_Authentication",
+			"item": [
+				{
+					"name": "auth register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"demo_user@unipi.gr\",\n  \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "auth login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"if (jsonData.access_token) {\r",
+									"    pm.environment.set(\"token\", jsonData.access_token);\r",
+									"    console.log(\"Token saved to environment\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"demo_user@unipi.gr\",\n  \"password\": \"qqQQ11!!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/auth/logout"
+					},
+					"response": []
+				}
+			],
+			"description": "**Περιλαμβάνει όλα τα endpoints που σχετίζονται με τη διαχείριση χρηστών:**\n\n- **εγγραφή**\n    \n- **σύνδεση, αποθήκευση JWT token**\n    \n- **προβολή προφίλ**\n    \n- **αποσύνδεση**\n    \n\n**Απαραίτητο πρώτο βήμα για την εκτέλεση προστατευμένων API κλήσεων και αποθήκευση JWT token.**"
+		},
+		{
+			"name": "02_Product Discovery",
+			"item": [
+				{
+					"name": "all products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/products"
+					},
+					"response": []
+				},
+				{
+					"name": "products by name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/products/search?name=Φρεσκούλης",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Φρεσκούλης"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products by category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/products/search?category=Γαλακτοκομικά",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Γαλακτοκομικά"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/products/6829ff10d83dae89b2e480ae"
+					},
+					"response": []
+				},
+				{
+					"name": "product price offline scraping",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/products/6829ff10d83dae89b2e480ae/scrape"
+					},
+					"response": []
+				},
+				{
+					"name": "categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products/by-category?category=Κατεψυγμένα Προϊόντα",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"by-category"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Κατεψυγμένα Προϊόντα"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "**Ενότητες ανακάλυψης προϊόντων:**\n\n- **προβολή όλων**\n    \n- **αναζήτηση ανά όνομα**\n    \n- **αναζήτηση ανά κατηγορία**\n    \n- **λεπτομέρειες προϊόντος**\n    \n- **τιμές από προηγούμενο scraping**\n    \n- **αναζήτηση κατηγοριών**"
+		},
+		{
+			"name": "03_Cart Management",
+			"item": [
+				{
+					"name": "Create Cart from Scratch",
+					"item": [
+						{
+							"name": "add item to cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"product_id\": \"6829ff10d83dae89b2e480b8\",\n  \"quantity\": 3\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://127.0.0.1:5000/cart/items"
+							},
+							"response": []
+						},
+						{
+							"name": "item from cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://127.0.0.1:5000/cart/item/6829ff10d83dae89b2e480b5"
+							},
+							"response": []
+						}
+					],
+					"description": "> **Δημιουργία καλαθιού με προσθήκη και αφαίρεση προϊόντων**"
+				},
+				{
+					"name": "Create Cart from Clone",
+					"item": [
+						{
+							"name": "clone selected cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"cart_id\": \"682a081a9b9328f63b840f35\"}"
+								},
+								"url": "http://127.0.0.1:5000/cart/clone"
+							},
+							"response": []
+						}
+					],
+					"description": "> **Δημιουργία νέου καλαθιού από κλώνο**"
+				},
+				{
+					"name": "Manage products in the cart",
+					"item": [
+						{
+							"name": "increase quantity",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"product_id\": \"6829ff10d83dae89b2e480b5\",\n  \"action\": \"increment\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://127.0.0.1:5000/cart/items"
+							},
+							"response": []
+						},
+						{
+							"name": "decrease quantity",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"product_id\": \"6829ff10d83dae89b2e480b8\",\n  \"action\": \"decrement\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://127.0.0.1:5000/cart/items"
+							},
+							"response": []
+						}
+					],
+					"description": "> **Επεξεργασία ποσοτήτων**"
+				},
+				{
+					"name": "Cart Finalization",
+					"item": [
+						{
+							"name": "view cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://127.0.0.1:5000/cart"
+							},
+							"response": []
+						},
+						{
+							"name": "order cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": "http://127.0.0.1:5000/cart/ordered"
+							},
+							"response": []
+						},
+						{
+							"name": "cancel cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": "http://127.0.0.1:5000/cart/cancelled"
+							},
+							"response": []
+						},
+						{
+							"name": "delete cart",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://127.0.0.1:5000/cart"
+							},
+							"response": []
+						}
+					],
+					"description": "> **Προβολή καλαθιού** \n  \n> **Ολοκλήρωση/ακύρωση παραγγελίας** \n  \n> **Διαγραφή όλων των προϊόντων από το καλάθι**"
+				},
+				{
+					"name": "View Past Cart",
+					"item": [
+						{
+							"name": "all past carts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": "http://127.0.0.1:5000/carts/history"
+							},
+							"response": []
+						}
+					],
+					"description": "> **Προβολή ιστορικού παραγγελιών**"
+				}
+			],
+			"description": "**Περιλαμβάνει όλα τα endpoints διαχείρισης του καλαθιού:**\n\n- **δημιουργία καλαθιού με προσθήκη και αφαίρεση προϊόντων**\n    \n- **δημιουργία νέου καλαθιού από κλώνο**\n    \n- **επεξεργασία ποσοτήτων**\n    \n- **προβολή καλαθιού**\n    \n- **ολοκλήρωση/ακύρωση παραγγελίας**\n    \n- **διαγραφή όλων των προϊόντων από το καλάθι**\n    \n- **προβολή ιστορικού παραγγελιών**"
+		},
+		{
+			"name": "05_Stock Management",
+			"item": [
+				{
+					"name": "get available product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/products/6829ff10d83dae89b2e480bb"
+					},
+					"response": []
+				},
+				{
+					"name": "add available product to the cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"product_id\": \"6829ff10d83dae89b2e480b7\",\n  \"action\": \"increment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/cart/items"
+					},
+					"response": []
+				},
+				{
+					"name": "get unavailable product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/products/6829ff10d83dae89b2e480ba"
+					},
+					"response": []
+				},
+				{
+					"name": "add aunvailable product to the cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"product_id\": \"6829ff10d83dae89b2e480ba\",\n  \"action\": \"increment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/cart/items"
+					},
+					"response": []
+				}
+			],
+			"description": "**Έλεγχος και επιβεβαίωση της διαθεσιμότητας προϊόντων. Δοκιμάζει σενάρια προσθήκης διαθέσιμων και μη διαθέσιμων προϊόντων στο καλάθι, ώστε να διασφαλιστεί η σωστή αντίδραση του backend.**"
+		},
+		{
+			"name": "06_Analytics",
+			"item": [
+				{
+					"name": "orders per month",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/analytics/orders-per-month"
+					},
+					"response": []
+				},
+				{
+					"name": "monthly spending",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/analytics/monthly-spending"
+					},
+					"response": []
+				},
+				{
+					"name": "purchase-frequency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/analytics/purchase-frequency"
+					},
+					"response": []
+				},
+				{
+					"name": "favorite products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/analytics/favorites"
+					},
+					"response": []
+				},
+				{
+					"name": "suggested cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/analytics/suggested-cart"
+					},
+					"response": []
+				}
+			],
+			"description": "**Στατιστικά χρήστη βάσει προηγούμενων αγορών:**\n\n- **παραγγελίες ανά μήνα**\n    \n- **μηνιαία δαπάνη**\n    \n- **συχνότητα αγορών**\n    \n- **αγαπημένα προϊόντα**\n    \n- **προτεινόμενο κααλάθι**"
+		},
+		{
+			"name": "07_ML",
+			"item": [
+				{
+					"name": "predict-product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/ml/predict-product?product_id=6829ff10d83dae89b2e480af",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"ml",
+								"predict-product"
+							],
+							"query": [
+								{
+									"key": "product_id",
+									"value": "6829ff10d83dae89b2e480af"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cluster products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/ml/cluster-products"
+					},
+					"response": []
+				}
+			],
+			"description": "**Βασικές λειτουργίες μηχανικής μάθησης.**\n\n- **Πρόβλεψη πιθανότητας αγοράς προϊόντος**\n    \n- **Ομαδοποίηση προϊόντων που αγοράζονται συχνά μαζί**"
+		},
+		{
+			"name": "08_AI Interaction",
+			"item": [
+				{
+					"name": "ask (γενική)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Τι να μαγειρέψω σήμερα;\"\r\n}"
+						},
+						"url": "http://127.0.0.1:5000/ai/ask"
+					},
+					"response": []
+				},
+				{
+					"name": "ask (💡 Τι μου λείπει;)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Τι μου λείπει;\", \r\n    \"cart_id\": \"683dc33f21be3bac668c483b\"\r\n}"
+						},
+						"url": "http://127.0.0.1:5000/ai/ask"
+					},
+					"response": []
+				},
+				{
+					"name": "ask (👩‍🍳 Συνταγή και Θερμίδες)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Πρότεινέ μου συνταγές με θερμίδες με βάση τα προϊόντα του καλαθιού μου\", \r\n    \"cart_id\": \"683dc33f21be3bac668c483b\"\r\n}"
+						},
+						"url": "http://127.0.0.1:5000/ai/ask"
+					},
+					"response": []
+				},
+				{
+					"name": "ask (📊 Ανάλυση καλαθιού)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Κάνε μου ανάλυση καλαθιού\", \r\n    \"cart_id\": \"683dc33f21be3bac668c483b\"\r\n}"
+						},
+						"url": "http://127.0.0.1:5000/ai/ask"
+					},
+					"response": []
+				}
+			],
+			"description": "**Αλληλεπίδραση με τον έξυπνο βοηθό (AI assistant) μέσω OpenAI API. Περιλαμβάνει ερωτήσεις για:**\n\n- **γενικές συμβουλές**\n    \n- **συνταγές**\n    \n- **ανάλυση καλαθιού**\n    \n- **διατροφικές πληροφορίες**\n    \n- **έξυπνες προτάσεις**"
+		}
+	]
+}
