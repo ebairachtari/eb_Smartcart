@@ -36,6 +36,11 @@ JWT_SECRET_KEY=super-secret-key
 
 ## Δημιουργία και γέμισμα βάσης
 
+### Μαζικό Scraping
+```bash
+python scripts/run_scraper.py
+```
+
 ### Κατηγορίες
 ```bash
 python scripts/insert_categories_to_mongo.py
