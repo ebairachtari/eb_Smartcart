@@ -36,17 +36,28 @@ JWT_SECRET_KEY=super-secret-key
 
 ## Δημιουργία και γέμισμα βάσης
 
+### Κατηγορίες
 ```bash
 python scripts/insert_categories_to_mongo.py
+```
+
+### Προϊόντα
+```bash
 python scripts/insert_products_to_mongo.py
+```
+
+### Bulk Carts
+```bash
 python scripts/simulate_bulk_carts.py
 ```
 
 ## Εκτέλεση Backend & Frontend
 
 ```bash
-python main.py         # Εκκίνηση Flask backend στο http://127.0.0.1:5000
-streamlit run ui/Main.py  # τη γραμμή UI
+python main.py         # Εκκίνηση Flask backend
+```
+```bash
+streamlit run ui/Σύνδεση.py  # Εκκίνηση UI
 ```
 
 ## Postman Collection
