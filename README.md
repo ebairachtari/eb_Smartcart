@@ -75,7 +75,7 @@ python main.py
 
 > Στο φάκελο `Postman_Collection/` υπάρχουν όλα τα endpoints και το ρυθμισμένο environment για τα tokens έτοιμα για εισαγωγή στον Postma
 
-## Frontend
+## Εκτέλεση Frontend
 
 ```bash
 streamlit run ui/Σύνδεση.py  
