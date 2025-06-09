@@ -51,7 +51,7 @@ python scripts/insert_products_to_mongo.py
 python scripts/simulate_bulk_carts.py
 ```
 
-## Εκτέλεση Backend & Frontend
+## Εκτέλεση Backend & Postman Collection
 
 ```bash
 python main.py         # Εκκίνηση Flask backend
@@ -59,7 +59,7 @@ python main.py         # Εκκίνηση Flask backend
 
 ### Postman Collection
 
-Βρίσκεται στο φάκελο `Postman_Collection/` → εισαγωγή στον Postman → περιέχει όλα τα endpoints και το ρυθμισμένο environment για τα tokens
+> Στο φάκελο `Postman_Collection/` υπάρχουν όλα τα endpoints και το ρυθμισμένο environment για τα tokens έτοιμα για εισαγωγή στον Postma
 
 ## Frontend
 
