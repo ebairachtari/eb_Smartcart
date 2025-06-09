@@ -85,34 +85,30 @@ streamlit run ui/Σύνδεση.py
 
 ## Δομή Φακέλων
 
-```
-app/             # Core logic & routes
-scripts/         # Scripts για seed & scraping
-seed_data/       # Αποτελέσματα από τα scripts για seed
-ui/              # Το Streamlit interface
-tests/           # Δοκιμές scraping
-scraped_outputs/ # Αποθηκευμένα scraping αποτελέσματα
-```
-
->*Αναπτύχθηκε αποκλειστικά για εκπαιδευτικούς σκοπούς.*
-
-
-## 🏗️ Δομή φακέλων
-
-```bash
 project_root/
 ├── app/
-│   ├── routes/              # Flask API endpoints
-│   ├── services/            # Business λογική (Mongo queries, έλεγχοι κλπ.)
-│   ├── db/                  # Σύνδεση με MongoDB και repository functions
+│   ├── routes/              # Flask API endpoints για authentication, carts, products, analytics, AI
+│   ├── services/            # Business λογική (MongoDB queries, έλεγχοι, επεξεργασία δεδομένων)
+│   ├── db/                  # Ρύθμιση σύνδεσης MongoDB και CRUD functions (DB_config, DB_repository)
 │   ├── model/               # Pydantic models για validation (User, CartItem)
-│   ├── scrapers/            # Web scraping functions (efresh & marketin)
-│   ├── utils/               # constructors για δημιουργία εγγράφων
-│   └── middleware/          # token_required decorator για έλεγχο JWT
-├── scripts/                 # Αρχεία αρχικοποίησης, scraping, bulk carts
-├── seed_data/               # CSV για αρχικά URLs και κατηγορίες
-├── scraped_outputs/         # .csv αρχεία από scraping
-├── requirements.txt
-├── README.md                # Αυτό το αρχείο
-└── main.py                  # Εκκίνηση Flask app
-```
+│   ├── scrapers/            # Συναρτήσεις scraping (e-Fresh, MarketIN)
+│   ├── utils/               # Βοηθητικά αρχεία: constructors για documents, constants
+│   └── middleware/          # Έλεγχος JWT με custom @token_required decorator
+│
+├── ui/                      # Streamlit interface (πολλαπλές σελίδες, login, προβολή προϊόντων, στατιστικά)
+│
+├── scripts/                 # Scripts για scraping, εισαγωγή προϊόντων/κατηγοριών, ενημέρωση αποθέματος, δημιουργία bulk carts
+│
+├── seed_data/               # Αρχεία CSV με αρχικά URLs, κατηγορίες και stock
+│
+├── scraped_outputs/         # Καταγεγραμμένα αποτελέσματα scraping (.csv με timestamp)
+│
+├── Postman_Collection/      # Postman collection & environment για δοκιμή όλων των endpoints
+│
+├── requirements.txt         # Όλες οι απαιτούμενες Python βιβλιοθήκες
+├── .env                     # Περιβαλλοντικές μεταβλητές (MONGO_URI, JWT_SECRET_KEY) [εκτός Git]
+├── README.md                # Τεχνική τεκμηρίωση έργου
+└── main.py                  # Κύρια είσοδος εφαρμογής Flask
+
+
+>*Αναπτύχθηκε αποκλειστικά για εκπαιδευτικούς σκοπούς.*
