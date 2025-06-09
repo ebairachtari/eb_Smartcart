@@ -56,13 +56,16 @@ python scripts/simulate_bulk_carts.py
 ```bash
 python main.py         # Εκκίνηση Flask backend
 ```
-```bash
-streamlit run ui/Σύνδεση.py  # Εκκίνηση UI
-```
 
-## Postman Collection
+### Postman Collection
 
 Βρίσκεται στο φάκελο `Postman_Collection/` → εισαγωγή στον Postman → περιέχει όλα τα endpoints και το ρυθμισμένο environment για τα tokens
+
+## Frontend
+
+```bash
+streamlit run ui/Σύνδεση.py  
+```
 
 ## Δομή Φακέλων
 
