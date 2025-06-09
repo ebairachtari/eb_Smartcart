@@ -57,8 +57,6 @@ python scripts/simulate_bulk_carts.py
 python main.py         # Εκκίνηση Flask backend
 ```
 
-### Postman Collection
-
 > Στο φάκελο `Postman_Collection/` υπάρχουν όλα τα endpoints και το ρυθμισμένο environment για τα tokens έτοιμα για εισαγωγή στον Postma
 
 ## Frontend
