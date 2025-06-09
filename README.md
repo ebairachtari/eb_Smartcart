@@ -110,7 +110,7 @@ eb_Smartcart/
 ├── seed_data/                 # CSV αρχεία με URLs, stock, κατηγορίες
 │
 ├── ui/                        # UI (Streamlit Frontend)
-
+│   │
 │   └── Σύνδεση.py             # Εκκίνηση UI
 │
 ├── main.py                    # Εκκίνηση Flask backend
