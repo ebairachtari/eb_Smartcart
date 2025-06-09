@@ -95,3 +95,24 @@ scraped_outputs/ # Αποθηκευμένα scraping αποτελέσματα
 ```
 
 >*Αναπτύχθηκε αποκλειστικά για εκπαιδευτικούς σκοπούς.*
+
+
+## 🏗️ Δομή φακέλων
+
+```bash
+project_root/
+├── app/
+│   ├── routes/              # Flask API endpoints
+│   ├── services/            # Business λογική (Mongo queries, έλεγχοι κλπ.)
+│   ├── db/                  # Σύνδεση με MongoDB και repository functions
+│   ├── model/               # Pydantic models για validation (User, CartItem)
+│   ├── scrapers/            # Web scraping functions (efresh & marketin)
+│   ├── utils/               # constructors για δημιουργία εγγράφων
+│   └── middleware/          # token_required decorator για έλεγχο JWT
+├── scripts/                 # Αρχεία αρχικοποίησης, scraping, bulk carts
+├── seed_data/               # CSV για αρχικά URLs και κατηγορίες
+├── scraped_outputs/         # .csv αρχεία από scraping
+├── requirements.txt
+├── README.md                # Αυτό το αρχείο
+└── main.py                  # Εκκίνηση Flask app
+```
