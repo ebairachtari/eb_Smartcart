@@ -85,6 +85,7 @@ streamlit run ui/Σύνδεση.py
 
 ## Δομή Φακέλων
 
+```bash
 project_root/
 ├── app/
 │   ├── routes/              # Flask API endpoints για authentication, carts, products, analytics, AI
@@ -109,6 +110,6 @@ project_root/
 ├── .env                     # Περιβαλλοντικές μεταβλητές (MONGO_URI, JWT_SECRET_KEY) [εκτός Git]
 ├── README.md                # Τεχνική τεκμηρίωση έργου
 └── main.py                  # Κύρια είσοδος εφαρμογής Flask
-
+```
 
 >*Αναπτύχθηκε αποκλειστικά για εκπαιδευτικούς σκοπούς.*
