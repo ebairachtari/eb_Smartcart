@@ -51,15 +51,17 @@ streamlit run ui/Main.py  # τη γραμμή UI
 
 ## Postman Collection
 
-Βρίσκεται στο φάκελο `postman/` → εισαγωγή στον Postman → περιέχει όλα τα endpoints
+Βρίσκεται στο φάκελο `Postman_Collection/` → εισαγωγή στον Postman → περιέχει όλα τα endpoints και το ρυθμισμένο environment για τα tokens
 
 ## Δομή Φακέλων
 
 ```
 app/             # Core logic & routes
-scripts/         # scripts για seed & scraping
-seed_data/       # αν θέλεις να κρατήσεις export JSON
+scripts/         # Scripts για seed & scraping
+seed_data/       # Αποτελέσματα από τα scripts για seed
 ui/              # Το Streamlit interface
-tests/           # Υποθέτω ότι περιέχει δοκιμές
+tests/           # Δοκιμές scraping
 scraped_outputs/ # Αποθηκευμένα scraping αποτελέσματα
 ```
+
+>*Αναπτύχθηκε αποκλειστικά για εκπαιδευτικούς σκοπούς.*
