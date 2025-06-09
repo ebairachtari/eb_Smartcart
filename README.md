@@ -86,30 +86,34 @@ streamlit run ui/Σύνδεση.py
 ## Δομή Φακέλων
 
 ```bash
-project_root/
-├── app/
-│   ├── routes/              # Flask API endpoints για authentication, carts, products, analytics, AI
-│   ├── services/            # Business λογική (MongoDB queries, έλεγχοι, επεξεργασία δεδομένων)
-│   ├── db/                  # Ρύθμιση σύνδεσης MongoDB και CRUD functions (DB_config, DB_repository)
-│   ├── model/               # Pydantic models για validation (User, CartItem)
-│   ├── scrapers/            # Συναρτήσεις scraping (e-Fresh, MarketIN)
-│   ├── utils/               # Βοηθητικά αρχεία: constructors για documents, constants
-│   └── middleware/          # Έλεγχος JWT με custom @token_required decorator
+eb_Smartcart/
+
+├── app/                       # Κύρια λογική της εφαρμογής (Flask backend)
+│   ├── db/                    # Σύνδεση και λειτουργίες με MongoDB
+│   │
+│   ├── middleware/            # Custom JWT decorator για προστασία endpoints
+│   │
+│   ├── model/                 # Pydantic μοντέλα για validation
+│   │
+│   ├── routes/                # Όλα τα API endpoints
+│   │
+│   ├── scrapers/              # Συναρτήσεις scraping για τα e-shops
+│   │
+│   ├── services/              # Business λογική & queries (Mongo, AI, ML)
+│   │
+│   └── utils/                 # Χρήσιμες συναρτήσεις, constructors, σταθερές
 │
-├── ui/                      # Streamlit interface (πολλαπλές σελίδες, login, προβολή προϊόντων, στατιστικά)
+├── scraped_outputs/           # Αποτελέσματα scraping (.csv)
 │
-├── scripts/                 # Scripts για scraping, εισαγωγή προϊόντων/κατηγοριών, ενημέρωση αποθέματος, δημιουργία bulk carts
+├── scripts/                   # Scripts αρχικοποίησης & επεξεργασίας
 │
-├── seed_data/               # Αρχεία CSV με αρχικά URLs, κατηγορίες και stock
+├── seed_data/                 # CSV αρχεία με URLs, stock, κατηγορίες
 │
-├── scraped_outputs/         # Καταγεγραμμένα αποτελέσματα scraping (.csv με timestamp)
+├── ui/                        # UI (Streamlit Frontend)
+
+│   └── Σύνδεση.py             # Εκκίνηση UI
 │
-├── Postman_Collection/      # Postman collection & environment για δοκιμή όλων των endpoints
-│
-├── requirements.txt         # Όλες οι απαιτούμενες Python βιβλιοθήκες
-├── .env                     # Περιβαλλοντικές μεταβλητές (MONGO_URI, JWT_SECRET_KEY) [εκτός Git]
-├── README.md                # Τεχνική τεκμηρίωση έργου
-└── main.py                  # Κύρια είσοδος εφαρμογής Flask
+├── main.py                    # Εκκίνηση Flask backend
 ```
 
 >*Αναπτύχθηκε αποκλειστικά για εκπαιδευτικούς σκοπούς.*
