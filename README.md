@@ -73,7 +73,9 @@ python scripts/simulate_bulk_carts.py
 python main.py       
 ```
 
-> Στο φάκελο `Postman_Collection/` υπάρχουν όλα τα endpoints και το ρυθμισμένο environment για τα tokens έτοιμα για εισαγωγή στον Postma
+> Στο φάκελο `Postman_Collection/` υπάρχουν όλα τα endpoints και το ρυθμισμένο environment για τα tokens έτοιμα για εισαγωγή στον Postman.
+> Τα endpoints προστατεύονται με JWT authentication. Το token αποθηκεύεται στο Postman environment και χρησιμοποιείται αυτόματα σε κάθε προστατευμένο request.
+
 
 ## Εκτέλεση Frontend
 
