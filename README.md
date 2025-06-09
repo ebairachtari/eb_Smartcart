@@ -3,8 +3,6 @@
 ## Περιγραφή
 Ένα ολοκληρωμένο Python e‑commerce σύστημα με Flask, MongoDB, Streamlit και AI τεχνολογίες.
 
----
-
 ## Τεχνολογίες
 - Backend: Flask + Flask‑JWT‑Extended
 - DB: MongoDB (PyMongo)
