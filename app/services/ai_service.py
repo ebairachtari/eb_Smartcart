@@ -10,7 +10,7 @@ from collections import defaultdict
 
 # -------------------- Δημιουργία OpenAI client --------------------
 client = OpenAI(
-    api_key="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" 
+    api_key="your-key-here" 
 )
 
 # -------------------- Κατηγορίες καθαριστικών --------------------
