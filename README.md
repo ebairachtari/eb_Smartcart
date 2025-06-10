@@ -66,6 +66,11 @@ python scripts/insert_products_to_mongo.py
 ```bash
 python scripts/simulate_bulk_carts.py
 ```
+Αν κατά την εκτέλεση κάποιου script εμφανιστεί σφάλμα τύπου `ModuleNotFoundError: No module named 'app'`, παρακαλώ τρέξτε την εντολή ως εξής:
+
+```bash
+$env:PYTHONPATH = "."; python scripts/run_scraper.py
+
 
 ## Εκτέλεση Backend & Postman Collection
 
