@@ -70,7 +70,7 @@ python scripts/simulate_bulk_carts.py
 
 ```bash
 $env:PYTHONPATH = "."; python scripts/run_scraper.py
-
+```
 
 ## Εκτέλεση Backend & Postman Collection
 
