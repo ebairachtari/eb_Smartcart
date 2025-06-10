@@ -69,7 +69,7 @@ python scripts/simulate_bulk_carts.py
 Αν κατά την εκτέλεση κάποιου script εμφανιστεί σφάλμα τύπου `ModuleNotFoundError: No module named 'app'`, παρακαλώ τρέξτε την εντολή ως εξής:
 
 ```bash
-$env:PYTHONPATH = "."; python scripts/run_scraper.py
+$env:PYTHONPATH = "."; python scripts/the_sript.py
 ```
 
 ## Εκτέλεση Backend & Postman Collection
